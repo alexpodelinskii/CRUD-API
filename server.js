@@ -1,5 +1,5 @@
 const http = require('http');
-const { getAllUsers, getUserById, addUser, updateUserById } = require('./controllers/controller.js')
+const { getAllUsers, getUserById, addUser, updateUserById, deleteUserById } = require('./controllers/controller.js')
 
 const server = http.createServer((request, response) => {
 
@@ -18,10 +18,12 @@ const server = http.createServer((request, response) => {
     } else if (request.url.match(/\/api\/users\//) && request.method === 'PUT') {
         const id = request.url.split('/')[3];
         updateUserById(request, response, id);
+    } else if (request.url.match(/\/api\/users\//) && request.method === 'DELETE') {
+        const id = request.url.split('/')[3];
+        deleteUserById(request, response, id);
     } else {
-        console.log(request.url);
         response.writeHead(404, { 'Content-Type': 'application/json' });
-        response.end(JSON.stringify({ message: 'Not found' }));
+        response.end(JSON.stringify({ message: 'Wrong path' }));
     }
 });
 

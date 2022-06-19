@@ -1,4 +1,4 @@
-const db = require('./../db.json');
+let db = require('./../db.json');
 const { v4: uuidv4 } = require('uuid');
 const { writeDataToFileS } = require('./../utils.js')
 
@@ -27,7 +27,6 @@ function create(user) {
 
         db.push(newUser);
         await writeDataToFileS('./db.json', db);
-        console.log(db);
         resolve(newUser);
     })
 }
@@ -41,6 +40,15 @@ function update(user, index) {
         resolve(user);
     })
 }
+
+function deleteUser(id) {
+
+    return new Promise(async (resolve, reject) => {
+        db = db.filter(user => user.id !== id);
+        await writeDataToFileS('./db.json', db);
+        resolve();
+    })
+}
 module.exports = {
-    getAllUsers, findById, create, update
+    getAllUsers, findById, create, update, deleteUser
 }
