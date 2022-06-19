@@ -1,3 +1,4 @@
+require('dotenv').config();
 const http = require('http');
 const { getAllUsers, getUserById, addUser, updateUserById, deleteUserById } = require('./controllers/controller.js')
 
@@ -27,6 +28,6 @@ const server = http.createServer((request, response) => {
     }
 });
 
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
-server.listen(PORT, () => console.log('Server started'))
+server.listen(PORT, () => console.log(`Server started in port: ${PORT}`))
