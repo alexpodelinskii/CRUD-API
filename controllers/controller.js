@@ -7,7 +7,8 @@ async function getAllUsers(req, resp) {
         resp.writeHead(200, { 'Content-Type': 'application/json' })
         resp.end(JSON.stringify(users))
     } catch (error) {
-        console.log(error);
+        resp.writeHead(500, { 'Content-Type': 'application/json' })
+        resp.end(JSON.stringify({ message: "Server error!" }))
     }
 
 }
@@ -29,7 +30,8 @@ async function getUserById(req, resp, id) {
         }
 
     } catch (error) {
-        console.log(error);
+        resp.writeHead(500, { 'Content-Type': 'application/json' })
+        resp.end(JSON.stringify({ message: "Server error!" }))
     }
 
 }
@@ -62,7 +64,8 @@ async function addUser(req, resp) {
 
 
     } catch (error) {
-        console.log(error);
+        resp.writeHead(500, { 'Content-Type': 'application/json' })
+        resp.end(JSON.stringify({ message: "Server error!" }))
     }
 
 }
@@ -105,13 +108,15 @@ async function updateUserById(req, resp, id) {
                 })
 
             } catch (error) {
-                console.log(error);
+                resp.writeHead(500, { 'Content-Type': 'application/json' })
+                resp.end(JSON.stringify({ message: "Server error!" }))
             }
 
         }
 
     } catch (error) {
-        console.log(error);
+        resp.writeHead(500, { 'Content-Type': 'application/json' })
+        resp.end(JSON.stringify({ message: "Server error!" }))
     }
 
 }
@@ -133,7 +138,8 @@ async function deleteUserById(request, resp, id) {
         }
 
     } catch (error) {
-        console.log(error);
+        resp.writeHead(500, { 'Content-Type': 'application/json' })
+        resp.end(JSON.stringify({ message: "Server error!" }))
     }
 
 }
